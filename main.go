@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 	"os"
-	"syscall"
 	"os/signal"
+	"syscall"
 )
 
 func main() {
@@ -12,13 +12,13 @@ func main() {
 }
 
 func run() int {
-  ret := loop()
-  return ret
+	ret := loop()
+	return ret
 }
 
 func loop() int {
 
-  log.Println("RUN")
+	log.Println("RUN")
 
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan,
