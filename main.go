@@ -5,6 +5,7 @@ import (
 	"os"
 	"os/signal"
 	"syscall"
+  "time"
 )
 
 func main() {
@@ -12,13 +13,26 @@ func main() {
 }
 
 func run() int {
+  task()
 	ret := loop()
+  func() {
+    time.Sleep(100 * time.Second)
+  }()
 	return ret
 }
 
-func loop() int {
+func task() {
+	go func() {
+		for {
+      log.Println("RUN TASK")
+      // sleep run interval
+			time.Sleep(time.Second * 5)
+		}
+	}()
+}
 
-	log.Println("RUN")
+func loop() int {
+  log.Println("RUN")
 
 	sigChan := make(chan os.Signal, 1)
 	signal.Notify(sigChan,
