@@ -15,9 +15,6 @@ func main() {
 func run() int {
 	task()
 	ret := loop()
-	func() {
-		time.Sleep(100 * time.Second)
-	}()
 	return ret
 }
 
